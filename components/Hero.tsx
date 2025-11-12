@@ -5,11 +5,32 @@ import { PERSONAL_INFO } from '../constants';
 const Hero: React.FC = () => {
     return (
         <div className="relative h-[80vh] w-full">
-            <img 
-                src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDVsOXduMHQzbXc4Z2lxeDRkODByN3Jvem1rZTAxbTlxZDQ3aDU4cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ftT0TTGmIZ7omfdvMc/giphy.gif" 
-                alt="Hero background" 
-                className="absolute top-0 left-0 w-full h-full object-cover"
-            />
+            {(() => {
+                const images = [
+                    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDVsOXduMHQzbXc4Z2lxeDRkODByN3Jvem1rZTAxbTlxZDQ3aDU4cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ftT0TTGmIZ7omfdvMc/giphy.gif",
+                    "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3am0wMDAxbTllMzdhYnFtZm5laTFteGlmNzhob3Zpam9namRkcDJhaiZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/QWq9hq1yR4qgHUfJGN/giphy.gif",
+                    "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZzdpYnAwOWZwZXJ1MTBhZXM1cGpzMjdlc3lndmFveWt0ZXFmeXZtdCZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/3oxHQwdn31M3ddjV3a/giphy.gif",
+                    "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3MHQ5OGQyYnJ5cWd2NTJpazN0cDIydXQ4cTI5Y2tmcWt6eGR3a3FhZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l41m2M6Gwq2ogoyju/giphy.gif",
+                    "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3aWJyM2o1c2hxczFteWczZTNpYzFwODQzMWZqYmg5cDRqaGl5Z3JqcCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/PAqjdPkJLDsmBRSYUp/giphy.gif",
+                    "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHc2dDQ5dDh5aXN2c2lkMjNmYWx4b2lybXVuZWp5ZWFtdjlqYmI2aSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/PMhvPH4yNLkTi4UOHc/giphy.gif"
+                ];
+                const [index, setIndex] = React.useState(() => Math.floor(Math.random() * images.length));
+                
+                React.useEffect(() => {
+                    const interval = setInterval(() => {
+                        setIndex(prev => (prev + 1) % images.length);
+                    }, 10000);
+                    return () => clearInterval(interval);
+                }, [images.length]);
+                
+                return (
+                    <img
+                        src={images[index]}
+                        alt="Hero background"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                    />
+                );
+            })()}
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-netflix-dark via-transparent to-transparent"></div>
             <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-netflix-dark to-transparent"></div>
             
